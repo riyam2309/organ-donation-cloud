@@ -112,6 +112,7 @@ class RecipientCreate(BaseModel):
     # Kidney-specific
     hla_match_score: Optional[int] = Field(default=None, ge=0, le=6)
     pra_percent: Optional[int] = Field(default=None, ge=0, le=100)
+    crossmatch_negative: Optional[bool] = None
     on_dialysis: Optional[bool] = None
     egfr: Optional[float] = Field(default=None, ge=0, le=120)
 
@@ -158,6 +159,10 @@ class RecipientCreate(BaseModel):
                 raise ValueError("hla_match_score (0-6) is required for kidney recipients")
             if self.pra_percent is None:
                 raise ValueError("pra_percent is required for kidney recipients")
+            if self.crossmatch_negative is None:
+                raise ValueError("crossmatch_negative is required for kidney recipients")
+            if self.crossmatch_negative is False:
+                raise ValueError("positive crossmatch is not allowed for kidney recipients")
             if self.on_dialysis is None and self.egfr is None:
                 raise ValueError("on_dialysis or egfr is required for kidney recipients")
 
@@ -210,6 +215,7 @@ class Recipient(BaseModel):
     # Kidney
     hla_match_score: Optional[int] = None
     pra_percent: Optional[int] = None
+    crossmatch_negative: Optional[bool] = None
     on_dialysis: Optional[bool] = None
     egfr: Optional[float] = None
 
