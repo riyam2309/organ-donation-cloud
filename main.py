@@ -73,6 +73,7 @@ async def create_recipient(body: RecipientCreate) -> Recipient:
         peld_score=body.peld_score,
         hla_match_score=body.hla_match_score,
         pra_percent=body.pra_percent,
+        crossmatch_negative=body.crossmatch_negative,
         on_dialysis=body.on_dialysis,
         egfr=body.egfr,
         las_score=body.las_score,
