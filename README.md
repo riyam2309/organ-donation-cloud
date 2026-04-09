@@ -43,10 +43,3 @@ Open:
 1) Create recipients (waiting list)
 2) Post a donor (triggers allocation attempt)
 3) Watch real-time events on the dashboard (allocation + notifications)
-
-## Notes / constraints
-
-- This version uses an **in-memory store** for speed and simplicity (perfect for a 3-hour hackathon demo).
-- Deterministic ordering ensures fairness and reproducibility.
-- You can swap the store for a real database later without changing the rules engine.
-
